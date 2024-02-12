@@ -59,7 +59,7 @@ splash.append(result_label)
 # Initialize buttons
 fire_btn = digitalio.DigitalInOut(board.D5)  # Change to the desired pin, e.g., D5
 fire_btn.direction = digitalio.Direction.INPUT
-fire_btn.pull = digitalio.Pull.DOWN
+fire_btn.pull = digitalio.Pull.UP
 
 reset_btn = digitalio.DigitalInOut(board.D2)
 reset_btn.direction = digitalio.Direction.INPUT
@@ -90,7 +90,7 @@ while True:
             last_reset_time = current_time
 
     # Fire button (no debounce)
-    if fire_btn.value:
+    if not fire_btn.value:
         print("fire")
         print(ammo)
         ammo = max(0, ammo - 1)
