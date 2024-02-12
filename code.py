@@ -8,20 +8,21 @@
 
 # Initialize python libraries #########################################
 
-import time
 import board
 import displayio
-import terminalio
 import digitalio
 from adafruit_display_text import label
 from adafruit_bitmap_font import bitmap_font
-from adafruit_display_text import label
 display = board.DISPLAY
 
 # Initialize display ##################################################
 display = board.DISPLAY
 splash = displayio.Group()
 display.show(splash)
+display.auto_refresh = True
+
+# Initialize variables ################################################
+ammo = 99
 
 # Initialize Fonts & Colors ###########################################
 font1 = bitmap_font.load_font("/fonts/weyland10.bdf")
@@ -37,22 +38,17 @@ yellow = 0xe6ff05
 blue = 0x0000FF
 
 ## Create text labels #################################################
-header_label = label.Label(font2, text="Weyland-Yutani", color=red)
+header_label = label.Label(font3, text="Weyland-Yutani", color=red)
 header_label.x = int(display.width / 2 - header_label.width / 2)
 header_label.y = 10
 splash.append(header_label)
 
-subheader1_label = label.Label(font1, text="a subsidiary of", color=blue)
+subheader_label1 = label.Label(font2, text="A Stark Subsidiary", color=blue)
 subheader_label1.x = int(display.width / 2 - subheader_label1.width / 2)
-subheader_label1.y = 30
+subheader_label1.y = 35
 splash.append(subheader_label1)
 
-subheader2_label = label.Label(font2, text="Stark Industries", color=blue)
-subheader_label2.x = int(display.width / 2 - subheader_label2.width / 2)
-subheader_label2.y = 50
-splash.append(subheader_label2)
-
-result_label = label.Label(font5, text="99", color=yellow)
+result_label = label.Label(font5, text=str(ammo), color=yellow)
 result_label.x = 30
 result_label.y = 75
 splash.append(result_label)
@@ -70,12 +66,19 @@ reset_btn.pull = digitalio.Pull.DOWN
 
 # Loop forever  ########################################################
 while True:
+    if fire_btn.value:
+        #if ammo not less than zero
+        print("fire")
+        print(ammo)
+        ammo = ammo - 1
+        # play sound
+    if reset_btn.value:
+        ammo = 99
+        print("reset")
+    display.refresh()
 
 
-
-
-
-
-
-
-    pass
+### TO DO
+# Bounce the buttons
+# refresh count
+# add sound
