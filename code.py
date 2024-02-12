@@ -11,10 +11,9 @@
 import board
 import displayio
 import digitalio
-from adafruit_debouncer import Debouncer
 from adafruit_display_text import label
 from adafruit_bitmap_font import bitmap_font
-
+import time  # Import the time module for debounce
 display = board.DISPLAY
 
 # Initialize display ##################################################
@@ -34,9 +33,9 @@ font4 = bitmap_font.load_font("/fonts/weyland36.bdf")
 font5 = bitmap_font.load_font("/fonts/weyland72.bdf")
 font6 = bitmap_font.load_font("/fonts/weyland108.bdf")
 
-red = 0xFF2A04
+red = 0xff2a04
 green = 0x199781
-yellow = 0xE6FF05
+yellow = 0xe6ff05
 blue = 0x0000FF
 
 ## Create text labels #################################################
@@ -66,21 +65,36 @@ reset_btn = digitalio.DigitalInOut(board.D2)
 reset_btn.direction = digitalio.Direction.INPUT
 reset_btn.pull = digitalio.Pull.DOWN
 
+# Define debounce delay in seconds
+DEBOUNCE_DELAY = 0.1
+
+# Initialize last reset button state variables
+last_reset_state = False
+
+# Initialize last reset button press time variables
+last_reset_time = time.monotonic()
+
 # Loop forever  ########################################################
 while True:
+    current_time = time.monotonic()
+
+    # Debounce reset button
+    if current_time - last_reset_time > DEBOUNCE_DELAY:
+        current_reset_state = reset_btn.value
+        if current_reset_state != last_reset_state:
+            last_reset_state = current_reset_state
+            if current_reset_state:
+                ammo = 99
+                result_label.text = str(ammo)
+                print("reset")
+            last_reset_time = current_time
+
+    # Fire button (no debounce)
     if fire_btn.value:
-        # if ammo not less than zero
         print("fire")
         print(ammo)
-        ammo = ammo - 1
+        ammo = max(0, ammo - 1)
         result_label.text = str(ammo)
         # play sound
-    if reset_btn.value:
-        ammo = 99
-        result_label.text = str(ammo)
-        print("reset")
 
-
-### TO DO
-# Bounce the buttons - see https://learn.adafruit.com/debouncer-library-python-circuitpython-buttons-sensors/basic-debouncing
-# add sound
+    display.refresh()
