@@ -57,7 +57,7 @@ splash.append(result_label)
 # Initialize Buttons ###################################################
 
 # Initialize buttons
-fire_btn = digitalio.DigitalInOut(board.D1)
+fire_btn = digitalio.DigitalInOut(board.D5)  # Change to the desired pin, e.g., D5
 fire_btn.direction = digitalio.Direction.INPUT
 fire_btn.pull = digitalio.Pull.DOWN
 
