@@ -11,8 +11,10 @@
 import board
 import displayio
 import digitalio
+from adafruit_debouncer import Debouncer
 from adafruit_display_text import label
 from adafruit_bitmap_font import bitmap_font
+
 display = board.DISPLAY
 
 # Initialize display ##################################################
@@ -32,9 +34,9 @@ font4 = bitmap_font.load_font("/fonts/weyland36.bdf")
 font5 = bitmap_font.load_font("/fonts/weyland72.bdf")
 font6 = bitmap_font.load_font("/fonts/weyland108.bdf")
 
-red = 0xff2a04
+red = 0xFF2A04
 green = 0x199781
-yellow = 0xe6ff05
+yellow = 0xE6FF05
 blue = 0x0000FF
 
 ## Create text labels #################################################
@@ -67,18 +69,18 @@ reset_btn.pull = digitalio.Pull.DOWN
 # Loop forever  ########################################################
 while True:
     if fire_btn.value:
-        #if ammo not less than zero
+        # if ammo not less than zero
         print("fire")
         print(ammo)
         ammo = ammo - 1
+        result_label.text = str(ammo)
         # play sound
     if reset_btn.value:
         ammo = 99
+        result_label.text = str(ammo)
         print("reset")
-    display.refresh()
 
 
 ### TO DO
-# Bounce the buttons
-# refresh count
+# Bounce the buttons - see https://learn.adafruit.com/debouncer-library-python-circuitpython-buttons-sensors/basic-debouncing
 # add sound
