@@ -14,13 +14,20 @@ import digitalio
 from adafruit_display_text import label
 from adafruit_bitmap_font import bitmap_font
 import time  # Import the time module for debounce
-display = board.DISPLAY
+import audiocore
+import audiobusio
 
 # Initialize display ##################################################
 display = board.DISPLAY
 splash = displayio.Group()
 display.show(splash)
 display.auto_refresh = True
+
+# Initialize audio ####################################################
+audio = audiobusio.I2SOut(board.A0, board.A1, board.A2)
+#with open("filename.wav", "rb") as wave_file:
+#    wav = audiocore.WaveFile(filename)
+
 
 # Initialize variables ################################################
 ammo = 99
@@ -33,12 +40,14 @@ font4 = bitmap_font.load_font("/fonts/weyland36.bdf")
 font5 = bitmap_font.load_font("/fonts/weyland72.bdf")
 font6 = bitmap_font.load_font("/fonts/weyland108.bdf")
 
+font5.load_glyphs(b'0123456789')
+
 red = 0xff2a04
 green = 0x199781
 yellow = 0xe6ff05
 blue = 0x0000FF
 
-## Create text labels #################################################
+# Create text labels #################################################
 header_label = label.Label(font3, text="Weyland-Yutani", color=red)
 header_label.x = int(display.width / 2 - header_label.width / 2)
 header_label.y = 10
@@ -96,10 +105,11 @@ while True:
         ammo = max(0, ammo - 1)
         result_label.text = str(ammo)
         # play sound
+        #audio.play(wav)
 
     display.refresh()
 
-# TO DO:  
+# TO DO
 
-# SOUND:  https://learn.adafruit.com/circuitpython-essentials/circuitpython-audio-out
-# load_glyph for the numerals in the counter font to speed up first count
+# sound:  https://learn.adafruit.com/esp32-s2-reverse-tft-feather/i2s
+# clean up console reporting once debugged
