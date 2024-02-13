@@ -40,6 +40,7 @@ font4 = bitmap_font.load_font("/fonts/weyland36.bdf")
 font5 = bitmap_font.load_font("/fonts/weyland72.bdf")
 font6 = bitmap_font.load_font("/fonts/weyland108.bdf")
 
+# Preload digits for faster rendering first-run
 font5.load_glyphs(b'0123456789')
 
 red = 0xff2a04
