@@ -99,4 +99,7 @@ while True:
 
     display.refresh()
 
-# TO DO:  https://learn.adafruit.com/circuitpython-essentials/circuitpython-audio-out
+# TO DO:  
+
+# SOUND:  https://learn.adafruit.com/circuitpython-essentials/circuitpython-audio-out
+# load_glyph for the numerals in the counter font to speed up first count
