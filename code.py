@@ -25,27 +25,23 @@ display.auto_refresh = True
 
 # Initialize audio ####################################################
 audio = audiobusio.I2SOut(board.A0, board.A1, board.A2)
-#with open("filename.wav", "rb") as wave_file:
-#    wav = audiocore.WaveFile(filename)
-
+with open("prfire.wav", "rb") as wave_file:
+    wav = audiocore.WaveFile(wave_file)
 
 # Initialize variables ################################################
 ammo = 99
 
 # Initialize Fonts & Colors ###########################################
-font1 = bitmap_font.load_font("/fonts/weyland10.bdf")
 font2 = bitmap_font.load_font("/fonts/weyland12.bdf")
 font3 = bitmap_font.load_font("/fonts/weyland14.bdf")
-font4 = bitmap_font.load_font("/fonts/weyland36.bdf")
 font5 = bitmap_font.load_font("/fonts/weyland72.bdf")
-font6 = bitmap_font.load_font("/fonts/weyland108.bdf")
 
 # Preload digits for faster rendering first-run
-font5.load_glyphs(b'0123456789')
+font5.load_glyphs(b"0123456789")
 
-red = 0xff2a04
+red = 0xFF2A04
 green = 0x199781
-yellow = 0xe6ff05
+yellow = 0xE6FF05
 blue = 0x0000FF
 
 # Create text labels #################################################
@@ -97,6 +93,7 @@ while True:
                 ammo = 99
                 result_label.text = str(ammo)
                 print("reset")
+                audio.play(wav)
             last_reset_time = current_time
 
     # Fire button (no debounce)
@@ -106,11 +103,12 @@ while True:
         ammo = max(0, ammo - 1)
         result_label.text = str(ammo)
         # play sound
-        #audio.play(wav)
+        # audio.play(wav)
 
     display.refresh()
 
 # TO DO
 
 # sound:  https://learn.adafruit.com/esp32-s2-reverse-tft-feather/i2s
+# find valid pulse rifle wav (create)
 # clean up console reporting once debugged
