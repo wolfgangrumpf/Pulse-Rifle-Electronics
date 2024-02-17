@@ -1,3 +1,4 @@
+# Write your code here :-)
 # Pulse Rifle Ammo Counter/Sounds
 # Feather TFT REV
 
@@ -29,12 +30,12 @@ with open("prfire.wav", "rb") as wave_file:
     wav = audiocore.WaveFile(wave_file)
 
 # Initialize variables ################################################
-ammo = 99
+ammo = 95
 
 # Initialize Fonts & Colors ###########################################
 font2 = bitmap_font.load_font("/fonts/weyland12.bdf")
 font3 = bitmap_font.load_font("/fonts/weyland14.bdf")
-font5 = bitmap_font.load_font("/fonts/weyland72.bdf")
+font5 = bitmap_font.load_font("/fonts/DSEG7Classic-Bold-99.bdf")
 
 # Preload digits for faster rendering first-run
 font5.load_glyphs(b"0123456789")
@@ -45,17 +46,9 @@ yellow = 0xE6FF05
 blue = 0x0000FF
 
 # Create text labels #################################################
-header_label = label.Label(font3, text="Weyland-Yutani", color=red)
-header_label.x = int(display.width / 2 - header_label.width / 2)
-header_label.y = 10
-splash.append(header_label)
 
-subheader_label1 = label.Label(font2, text="A Stark Subsidiary", color=blue)
-subheader_label1.x = int(display.width / 2 - subheader_label1.width / 2)
-subheader_label1.y = 35
-splash.append(subheader_label1)
 
-result_label = label.Label(font5, text=str(ammo), color=yellow)
+result_label = label.Label(font5, text=str(ammo), color=red)
 result_label.x = 30
 result_label.y = 75
 splash.append(result_label)
@@ -90,7 +83,7 @@ while True:
         if current_reset_state != last_reset_state:
             last_reset_state = current_reset_state
             if current_reset_state:
-                ammo = 99
+                ammo = 95
                 result_label.text = str(ammo)
                 print("reset")
                 audio.play(wav)
