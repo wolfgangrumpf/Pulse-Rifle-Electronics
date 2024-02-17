@@ -3,6 +3,7 @@
 # Feather TFT REV
 
 # R. Wolfgang Rumpf 2/2024
+# Dadsvacay short 2/17/204 minor update for classic movie font
 
 # Designed for ESP32-S2 Feather with 240x135 TFT display
 # needs .bcf or .pcf fonts
