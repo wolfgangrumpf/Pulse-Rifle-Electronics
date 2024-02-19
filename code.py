@@ -35,7 +35,7 @@ ammo = 99
 font1 = bitmap_font.load_font("/fonts/weyland12.bdf")
 font2 = bitmap_font.load_font("/fonts/weyland14.bdf")
 font3 = bitmap_font.load_font("/fonts/weyland72.bdf")
-font4 = bitmap_font.load_font("/fonts/DSEG7Classic-Bold-99.bdf") # If you want to
+font4 = bitmap_font.load_font("/fonts/DSEG7Classic-Bold-99.bdf")  # If you want to
 # use this font, change line 61 to use font4
 
 # Preload digits for faster rendering first-run
@@ -106,7 +106,7 @@ while True:
         ammo = max(0, ammo - 1)
         result_label.text = str(ammo)
         # play sound
-        # audio.play(wav)
+        audio.play(wav)
 
     display.refresh()
 
