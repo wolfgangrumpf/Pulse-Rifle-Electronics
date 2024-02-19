@@ -3,7 +3,7 @@
 ![pulsecounter](https://github.com/wolfgangrumpf/Pulse-Rifle-Electronics/assets/1257828/01b1da43-a1ab-49d7-adb1-a9d38032a215)
 
 This project contains the resources and CircuitPython code to add an ammo counter and firing sound to a 3D printed M41A Pulse Rifle.  This is designed
-for the Adafruit Feather TFT Reverse S2 and an Adafruit Stemma 3885 Speaker (although you could probably make this work on any device that runs circuit
+for the Adafruit Feather TFT Reverse S2 and an I2S 3W Class D Amplifier Breakout MAX98357A (although you could probably make this work on any device that runs circuit
 python and modify the code for a different amp).
 
 Once booted up, the Trigger button counts down ammo and plays a firing wav file.  When the counter reaches zero, NOTHING happens until you hit the RESET button.  This can
