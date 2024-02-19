@@ -32,12 +32,15 @@ with open("prfire.wav", "rb") as wave_file:
 ammo = 99
 
 # Initialize Fonts & Colors ###########################################
-font2 = bitmap_font.load_font("/fonts/weyland12.bdf")
-font3 = bitmap_font.load_font("/fonts/weyland14.bdf")
-font5 = bitmap_font.load_font("/fonts/weyland72.bdf")
+font1 = bitmap_font.load_font("/fonts/weyland12.bdf")
+font2 = bitmap_font.load_font("/fonts/weyland14.bdf")
+font3 = bitmap_font.load_font("/fonts/weyland72.bdf")
+font4 = bitmap_font.load_font("/fonts/DSEG7Classic-Bold-99.bdf") # If you want to
+# use this font, change line 61 to use font4
 
 # Preload digits for faster rendering first-run
-font5.load_glyphs(b"0123456789")
+font3.load_glyphs(b"0123456789")
+font4.load_glyphs(b"0123456789")
 
 red = 0xFF2A04
 green = 0x199781
@@ -45,17 +48,17 @@ yellow = 0xE6FF05
 blue = 0x0000FF
 
 # Create text labels #################################################
-header_label = label.Label(font3, text="Weyland-Yutani", color=red)
+header_label = label.Label(font2, text="Weyland-Yutani", color=red)
 header_label.x = int(display.width / 2 - header_label.width / 2)
 header_label.y = 10
 splash.append(header_label)
 
-subheader_label1 = label.Label(font2, text="A Stark Subsidiary", color=blue)
+subheader_label1 = label.Label(font1, text="A Stark Subsidiary", color=blue)
 subheader_label1.x = int(display.width / 2 - subheader_label1.width / 2)
 subheader_label1.y = 35
 splash.append(subheader_label1)
 
-result_label = label.Label(font5, text=str(ammo), color=yellow)
+result_label = label.Label(font3, text=str(ammo), color=yellow)
 result_label.x = 30
 result_label.y = 75
 splash.append(result_label)
@@ -110,5 +113,4 @@ while True:
 # TO DO
 
 # sound:  https://learn.adafruit.com/esp32-s2-reverse-tft-feather/i2s
-# find valid pulse rifle wav (create)
 # clean up console reporting once debugged
