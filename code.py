@@ -25,8 +25,8 @@ display.auto_refresh = True
 
 # Initialize audio ####################################################
 audio = audiobusio.I2SOut(board.A0, board.A1, board.A2)
-with open("prfire.wav", "rb") as wave_file:
-    wav = audiocore.WaveFile(wave_file)
+#with open("prfire.wav", "rb") as wave_file:
+#    wav = audiocore.WaveFile(wave_file)
 
 # Initialize variables ################################################
 ammo = 99
@@ -95,8 +95,6 @@ while True:
             if current_reset_state:
                 ammo = 99
                 result_label.text = str(ammo)
-                print("reset")
-                audio.play(wav)
             last_reset_time = current_time
 
     # Fire button (no debounce)
@@ -105,12 +103,14 @@ while True:
         print(ammo)
         ammo = max(0, ammo - 1)
         result_label.text = str(ammo)
+
         # play sound
-        audio.play(wav)
+        with open("prfire.wav", "rb") as wave_file:
+            wav = audiocore.WaveFile(wave_file)
+            audio.play(wav)
+            while audio.playing:
+                pass
 
     display.refresh()
 
-# TO DO
 
-# sound:  https://learn.adafruit.com/esp32-s2-reverse-tft-feather/i2s
-# clean up console reporting once debugged
