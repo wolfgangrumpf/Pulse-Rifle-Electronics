@@ -15,9 +15,15 @@ If your Feather doesn't mount up like a flash drive you'll have to follow the in
 ![adafruit_products_FRTFT_I2S_bb](https://github.com/wolfgangrumpf/Pulse-Rifle-Electronics/assets/1257828/91be9ee3-fff1-4d7c-8115-7adc85acd0cd)
 
 Board 3V to breakout VIN
+
 Board GND to breakout GND
+
 Board A0 to breakout BCLK
+
 Board A1 to breakout LRC
+
 Board A2 to breakout DIN
+
 Speaker + to screw terminal +
+
 Speaker - to screw terminal -
