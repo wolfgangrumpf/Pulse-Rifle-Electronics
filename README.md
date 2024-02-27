@@ -12,4 +12,5 @@ While the code is written so that you can use the front buttons to trigger a res
 
 If your Feather doesn't mount up like a flash drive you'll have to follow the instructions to switch the board to circuitpython mode.  Adafruit has all the info.
 
+![adafruit_products_FRTFT_I2S_bb](https://github.com/wolfgangrumpf/Pulse-Rifle-Electronics/assets/1257828/91be9ee3-fff1-4d7c-8115-7adc85acd0cd)
 
